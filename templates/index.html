@@ -3,102 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValCustomPrints - Devis & Boutique Impression 3D</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f8f9fa; }
-        header, footer { background-color: #343a40; color: #fff; padding: 20px 0; }
-        .section { padding: 60px 0; }
-        .section-title { margin-bottom: 40px; text-align: center; }
-        .team-member, .product {
-            padding: 15px;
-            margin-bottom: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,.1);
-        }
-        .logo-img { width: 80px; }
-        .icon-feature { font-size: 40px; color: #007bff; margin-bottom: 10px; }
-        .product img { max-width: 100%; height: auto; border-radius: 5px; }
-        .team-member img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
-    </style>
+    <title>ValCustomPrints - Impression 3D</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
+
 <body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <img src="../static/imgs/logo.webp" alt="Logo" class="logo me-2">
+                    ValCustomPrints
+                </a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#presentation">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#realisations">Réalisations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#devis">Devis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#equipe">Équipe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-<header class="text-center">
-    <img src="../static/imgs/logo.webp" alt="Logo ValCustomPrints" class="logo-img mb-3">
-    <h1>ValCustomPrints</h1>
-    <p>Votre devis rapide & boutique en ligne d'impression 3D</p>
-</header>
-
-<section class="section container">
-    <div class="section-title">
-        <h2>Présentation du Projet</h2>
-        <i class="fas fa-cubes icon-feature"></i>
-        <p>ValCustomPrints est une plateforme dédiée à l'impression 3D de qualité supérieure, offrant deux services principaux : la possibilité de demander rapidement des devis personnalisés pour vos projets spécifiques et l'accès à une boutique en ligne proposant une sélection d'objets imprimés en 3D prêts à l'achat.</p>
-        <p>Chaque demande de devis est prise en charge personnellement par l'un de nos imprimeurs spécialisés, garantissant un suivi individualisé et adapté précisément à vos attentes. Notre boutique propose des créations originales réalisées par notre équipe passionnée, utilisant les meilleures techniques d'impression disponibles.</p>
-        <p>Chez ValCustomPrints, nous croyons en l'accessibilité de la technologie 3D pour tous. Faites-nous confiance pour transformer vos idées en objets concrets.</p>
-    </div>
-</section>
-
-<section class="section bg-light container">
-    <div class="section-title">
-        <h2>Demander un Devis</h2>
-    </div>
-    <form>
-        <!-- Le formulaire reste inchangé pour concision -->
-        <button type="submit" class="btn btn-primary">Envoyer ma demande</button>
-    </form>
-</section>
-
-<section class="section container">
-    <div class="section-title">
-        <h2>Meilleures Ventes</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-4 product text-center">
-            <img src="https://via.placeholder.com/250" alt="Figurine">
-            <h5 class="mt-2">Figurine personnalisée</h5>
-            <p>20€</p>
+    <!-- Présentation du projet -->
+    <section class="section-intro text-center py-5" id="presentation">
+        <div class="container">
+            <h1 class="mb-3">ValCustomPrints</h1>
+            <p class="lead">Transformez facilement vos idées en objets réels grâce à l’impression 3D sur-mesure.</p>
+            <a href="#devis" class="btn btn-primary mt-3"><i class="fas fa-file-upload"></i> Demander un devis</a>
         </div>
-        <div class="col-md-4 product text-center">
-            <h5>Support téléphone</h5>
-            <p>15€</p>
-        </div>
-        <div class="col-md-4 product text-center">
-            <h5>Lampe décorative</h5>
-            <p>25€</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section bg-light container">
-    <div class="section-title">
-        <h2>Notre Équipe</h2>
-    </div>
-    <div class="row text-center">
-        <div class="col-md-4 team-member">
-            <img src="https://via.placeholder.com/100" alt="Alexandre">
-            <h5 class="mt-2">Alexandre Martin</h5>
-            <p>Spécialiste PLA & ABS</p>
-        </div>
-        <div class="col-md-4 team-member">
-            <img src="https://via.placeholder.com/100" alt="Élodie">
-            <h5 class="mt-2">Élodie Fournier</h5>
-            <p>Ingénieure Impression 3D</p>
-        </div>
-        <div class="col-md-4 team-member">
-            <img src="https://via.placeholder.com/100" alt="Julien">
-            <h5 class="mt-2">Julien Lambert</h5>
-            <p>Spécialiste Résine SLA</p>
-        </div>
-    </div>
-</section>
 
-<footer class="text-center">
-    <p>&copy; 2025 ValCustomPrints - Tous droits réservés.</p>
-</footer>
 
+    <!-- Section realisations -->
+    <section class="section-products py-5" id="realisations">
+        <div class="container text-center">
+            <h2>Nos Réalisations</h2>
+            <div class="row mt-4">
+                <div class="col-md-4 product-card">
+                    <img src="../static/imgs/template/3d/automobile.webp" class="rounded mb-2">
+                    <h5>Pièce automobile</h5>
+                </div>
+                <div class="col-md-4 product-card">
+                    <img src="../static/imgs/template/3d/archi.webp" class="rounded mb-2">
+                    <h5>Maquette architecturale</h5>
+                </div>
+                <div class="col-md-4 product-card">
+                    <img src="../static/imgs/template/3d/deco.webp" class="rounded mb-2">
+                    <h5>Objet décoratif</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Équipe -->
+    <section class="section-team bg-light py-5" id="equipe">
+        <div class="container text-center">
+            <h2>Notre équipe</h2>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-md-3">
+                    <img src="../static/imgs/template/profils/profile1.webp" class="rounded-circle mb-2">
+                    <h6>Alex Dupont</h6>
+                    <p>Spécialiste impression 3D</p>
+                </div>
+                <div class="col-md-3">
+                    <img src="../static/imgs/template/profils/profile2.webp" class="rounded-circle mb-2">
+                    <h6>Camille Durand</h6>
+                    <p>Designer 3D</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-3 bg-secondary text-center text-white">
+        <div class="container">
+            <div class="mb-2">
+                <a href="#"><i class="fab fa-facebook fa-lg text-white me-2"></i></a>
+                <a href="#"><i class="fab fa-instagram fa-lg text-white me-2"></i></a>
+                <a href="#"><i class="fab fa-linkedin fa-lg text-white"></i></a>
+            </div>
+            <small>&copy; 2025 ValCustomPrints - Tous droits réservés.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
