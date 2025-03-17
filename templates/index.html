@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,97 +8,101 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- CSS personnalisé -->
+    <!-- Css customisé -->
     <link rel="stylesheet" href="../static/css/index.css">
+    <!-- Favicon -->
+    <link rel="icon" href="../static/imgs/logo.webp">
 </head>
 
 <body>
     <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <img src="../static/imgs/logo.webp" alt="Logo" class="logo me-2">
-                    ValCustomPrints
-                </a>
-                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#presentation">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#realisations">Réalisations</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#devis">Devis</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#equipe">Équipe</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Présentation du projet -->
-    <section class="section-intro text-center py-5" id="presentation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
         <div class="container">
-            <h1 class="mb-3">ValCustomPrints</h1>
-            <p class="lead">Transformez facilement vos idées en objets réels grâce à l’impression 3D sur-mesure.</p>
-            <a href="#devis" class="btn btn-primary mt-3"><i class="fas fa-file-upload"></i> Demander un devis</a>
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="../static/imgs/logo.webp" alt="ValCustomPrints">
+                ValCustomPrints
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#presentation">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#realisations">Réalisations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#devis">Devis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#equipe">Équipe</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Présentation -->
+    <section id="presentation" class="section-intro text-center py-5">
+        <div class="container">
+            <h1 class="display-4 fw-bold">ValCustomPrints</h1>
+            <p class="lead">Rendez vos idées réelles grâce à nos impressions 3D personnalisées, rapides et fiables.</p>
+            <a href="#boutique" class="btn btn-light btn-lg mt-3"><i class="fa-solid fa-shop"></i> Boutique</a>
+            <a href="#devis" class="btn btn-light btn-lg mt-3"><i class="fa-solid fa-file-arrow-up"></i> Demander un devis</a>
         </div>
     </section>
 
-
-
-    <!-- Section realisations -->
-    <section class="section-products py-5" id="realisations">
-        <div class="container text-center">
-            <h2>Nos Réalisations</h2>
-            <div class="row mt-4">
+    <!-- Section Réalisations -->
+    <section id="realisations" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Nos Réalisations</h2>
+            <div class="row g-4">
                 <div class="col-md-4 product-card">
-                    <img src="../static/imgs/template/3d/automobile.webp" class="rounded mb-2">
-                    <h5>Pièce automobile</h5>
+                    <img src="../static/imgs/template/3d/automobile.webp" class="img-fluid rounded shadow">
+                    <h5 class="mt-2">Pièce Automobile</h5>
                 </div>
                 <div class="col-md-4 product-card">
-                    <img src="../static/imgs/template/3d/archi.webp" class="rounded mb-2">
-                    <h5>Maquette architecturale</h5>
+                    <img src="../static/imgs/template/3d/archi.webp" class="img-fluid rounded shadow">
+                    <h5 class="mt-2">Maquette Architecturale</h5>
                 </div>
                 <div class="col-md-4 product-card">
-                    <img src="../static/imgs/template/3d/deco.webp" class="rounded mb-2">
-                    <h5>Objet décoratif</h5>
+                    <img src="../static/imgs/template/3d/deco.webp" class="img-fluid rounded shadow">
+                    <h5 class="mt-2">Objet Décoratif</h5>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section Équipe -->
-    <section class="section-team bg-light py-5" id="equipe">
-        <div class="container text-center">
-            <h2>Notre équipe</h2>
-            <div class="row mt-4 justify-content-center">
-                <div class="col-md-3">
-                    <img src="../static/imgs/template/profils/profile1.webp" class="rounded-circle mb-2">
-                    <h6>Alex Dupont</h6>
-                    <p>Spécialiste impression 3D</p>
+    <section id="equipe" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Notre Équipe</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3 team-card text-center">
+                    <img src="../static/imgs/template/profils/profile1.webp" class="rounded-circle shadow img-fluid">
+                    <h5 class="mt-3">Alex Dupont</h5>
+                    <p class="text-muted">Spécialiste impression 3D</p>
                 </div>
-                <div class="col-md-3">
-                    <img src="../static/imgs/template/profils/profile2.webp" class="rounded-circle mb-2">
-                    <h6>Camille Durand</h6>
-                    <p>Designer 3D</p>
+                <div class="col-md-3 team-card text-center">
+                    <img src="../static/imgs/template/profils/profile2.webp" class="rounded-circle shadow img-fluid">
+                    <h5 class="mt-3">Camille Durand</h5>
+                    <p class="text-muted">Designer 3D</p>
+                </div>
+                <div class="col-md-3 team-card text-center">
+                    <img src="../static/imgs/template/profils/profile3.webp" class="rounded-circle shadow img-fluid">
+                    <h5 class="mt-3">Baptiste Durand</h5>
+                    <p class="text-muted">Printer 3D</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-3 bg-secondary text-center text-white">
-        <div class="container">
-            <div class="mb-2">
-                <a href="#"><i class="fab fa-facebook fa-lg text-white me-2"></i></a>
-                <a href="#"><i class="fab fa-instagram fa-lg text-white me-2"></i></a>
-                <a href="#"><i class="fab fa-linkedin fa-lg text-white"></i></a>
+    <footer class="footer py-4 text-white">
+        <div class="container text-center">
+            <div class="social-icons mb-3">
+                <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                <a href="#" class="text-white"><i class="fab fa-linkedin fa-lg"></i></a>
             </div>
-            <small>&copy; 2025 ValCustomPrints - Tous droits réservés.</small>
+            <small>© 2025 ValCustomPrints - Tous droits réservés.</small>
         </div>
     </footer>
 
