@@ -1,5 +1,14 @@
+:root {
+    --primary-color: #6c63ff;
+    --secondary-color: #2575fc;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
 }
 
 .navbar-brand img {
@@ -7,12 +16,13 @@ body {
 }
 
 .section-intro {
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
 }
 
 .product-card img,
-.team-card img {
+.team-card img,
+.partner-card img {
     transition: transform 0.3s;
 }
 
@@ -56,9 +66,37 @@ body {
 }
 
 /* Centrer les cartes avec un gap minimum de 50px */
-.team-container {
+.team-container,
+.partner-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 50px;
+}
+
+
+/* Style pour les cartes partenaires */
+.partner-card {
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: border 0.3s;
+    background-color: white;
+    border: 2px solid transparent;
+}
+
+
+.partner-card:hover {
+    border: 2px solid var(--primary-color);
+}
+
+.partner-card img {
+    box-shadow: none !important;
+}
+
+.partner-card h5 {
+    display: block;
+    color: #000000;
+
+
 }
