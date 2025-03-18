@@ -1,9 +1,8 @@
 # Point d'entrée Flask
 import json
 import os
-import time
-from urllib import request
-from flask import Flask
+import datetime
+from flask import Flask, redirect, render_template, request
 app = Flask(__name__)
 
 
@@ -19,16 +18,20 @@ if not os.path.exists(UPLOAD_FOLDER):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/demande', methods=['POST'])
+@app.route('/form/send_devis_form', methods=['POST'])
 def enregistrer_demande():
-    # Récupérer les données du formulaire
+
     nom = request.form.get('nom')
     email = request.form.get('email')
     telephone = request.form.get('telephone')
     materiau = request.form.get('materiau')
     quantite = request.form.get('quantite')
     description = request.form.get('description')
+    fichier = request.files.get('fichier')
     
+    # Print pour vérifier les données
+    print(nom, email, telephone, materiau, quantite, description, fichier)
+
     # Traitement du fichier 3D
     fichier = request.files.get('fichier')
     if not fichier or not allowed_file(fichier.filename):
@@ -38,8 +41,11 @@ def enregistrer_demande():
     filename = fichier.filename
     
     # Création d'un dossier unique pour cette demande (utilisation du nom et d'un timestamp)
-    timestamp = int(time.time())
-    dossier_demande = os.path.join(app.config['UPLOAD_FOLDER'], f"{nom.replace(' ', '_')}_{timestamp}")
+    timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    # définir le filename sur le nom en laissant que les caractères alphanumériques
+    filename = "".join([c for c in nom if c.isalnum() or c in ('.', '_', '-')]) + f"_{timestamp}"
+    # Créer le dossier pour la demande
+    dossier_demande = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     os.makedirs(dossier_demande, exist_ok=True)
     
     # Enregistrer le fichier 3D dans le dossier
@@ -61,12 +67,20 @@ def enregistrer_demande():
     with open(chemin_json, 'w', encoding='utf-8') as f:
         json.dump(demande_data, f, ensure_ascii=False, indent=4)
     
-    return "Demande enregistrée avec succès.", 200
+    return redirect("/")
 
 
 @app.route('/')
 def home():
-    return 'Hello, Flask!'
+    return render_template('all/index.html')
+
+@app.route('/devis_formulaire', methods=['POST', 'GET'])
+def formulaire():
+    return render_template('all/form.html')
+
+@app.route('/shop', methods=['GET'])
+def shop():
+    return render_template('all/shop.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='localhost', port=5000)
