@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Statistiques</title>
+    <link rel="icon" href="../static/imgs/logo.webp">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border-bottom: 3px solid #007BFF;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            color: #007BFF;
+            font-size: 26px;
+            user-select: none;
+        }
+
+        .arrow {
+            display: inline-block;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsed .arrow {
+            transform: rotate(-90deg);
+        }
+
+        .statistiques {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .statistique {
+            flex: 1 1 220px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .statistique h2 {
+            font-size: 17px;
+            margin-bottom: 8px;
+            color: #6c757d;
+        }
+
+        .statistique p {
+            font-size: 30px;
+            color: #007BFF;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .demande {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .demande p {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+
+        .demande button {
+            padding: 7px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #ffffff;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .demande button:hover {
+            opacity: 0.85;
+        }
+
+        .demande button.download {
+            background-color: #28a745;
+        }
+
+        .demande button.delete {
+            background-color: #dc3545;
+        }
+
+        .demande button.take {
+            background-color: #17a2b8;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dee2e6;
+            margin-top: 15px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 12px;
+            margin-right: 5px;
+        }
+    </style>
+    <script>
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('collapsed');
+            const content = section.querySelector('.collapsible-content');
+            content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+
+<body>
+    <section id="statistiques">
+        <div class="container">
+            <h1 onclick="toggleSection('statistiques')"><span class="arrow">▶</span>Statistiques</h1>
+            <div class="collapsible-content">
+                <div class="statistiques">
+                    <div class="statistique">
+                        <h2>Demandes de devis</h2>
+                        <p>100</p>
+                    </div>
+                    <div class="statistique">
+                        <h2>Devis envoyés</h2>
+                        <p>80</p>
+                    </div>
+                    <div class="statistique">
+                        <h2>Devis acceptés</h2>
+                        <p>60</p>
+                    </div>
+                    <div class="statistique">
+                        <h2>Devis refusés</h2>
+                        <p>20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="devis_en_cours">
+        <div class="container">
+            <h1 onclick="toggleSection('devis_en_cours')"><span class="arrow">▶</span>Vos travaux</h1>
+            <div class="collapsible-content">
+                {% for travail in travaux %}
+                <div class="demande">
+                    <p><strong>Date :</strong> {{ travail.date }}</p>
+                    <p><strong>Nom :</strong> {{ travail.nom }}</p>
+                    <p><strong>Téléphone :</strong> {{ travail.telephone }}</p>
+                    <p><strong>Email :</strong> {{ travail.email }}</p>
+                    <p><strong>Quantité :</strong> {{ travail.quantite }}</p>
+                    <p><strong>Matériau :</strong> {{ travail.materiau }}</p>
+                    <p><strong>Description :</strong> {{ travail.description }}</p>
+                    <a href="#"><button class="download">Télécharger le modèle</button></a>
+                    <div>
+                        <input type="checkbox" id="delete-confirm-{{ loop.index }}">
+                        <label for="delete-confirm-{{ loop.index }}">Confirmer suppression</label>
+                    </div>
+                    <a href="#"><button class="delete">SUPPRIMER</button></a>
+                    <a href="#"><button class="take">Ne plus s'en occuper</button></a>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="demandes">
+        <div class="container">
+            <h1 onclick="toggleSection('demandes')"><span class="arrow">▶</span>Demandes non attribuées</h1>
+            <div class="collapsible-content">
+                {% for demande in demandes %}
+                <div class="demande">
+                    <p><strong>Date :</strong> {{ demande.date }}</p>
+                    <p><strong>Nom :</strong> {{ demande.nom }}</p>
+                    <p><strong>Quantité :</strong> {{ demande.quantite }}</p>
+                    <p><strong>Matériau :</strong> {{ demande.materiau }}</p>
+                    <p><strong>Description :</strong> {{ demande.description }}</p>
+                    <a href="#"><button class="download">Télécharger le modèle</button></a>
+                    <div>
+                        <a href="#"><button class="delete">SUPPRIMER</button></a>
+                        <input type="checkbox" id="delete-confirm-{{ loop.index }}">
+                        <label for="delete-confirm-{{ loop.index }}">Confirmer suppression</label>
+                    </div>
+                    <a href="#"><button class="take">Prendre le devis</button></a>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="alltravaux">
+        <div class="container">
+            <h1 onclick="toggleSection('alltravaux')"><span class="arrow">▶</span>Tout les devis</h1>
+            <div class="collapsible-content">
+                {% for dmd in alldemandes %}
+                <div class="demande">
+                    <p><strong>Date :</strong> {{ dmd.date }}</p>
+                    <p><strong>Attribué à :</strong> {{ dmd.status }}</p>
+                    <p><strong>Description :</strong> {{ dmd.description }}</p>
+                    <a href="#"><button class="download">Télécharger le modèle</button></a>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

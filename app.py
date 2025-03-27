@@ -2,7 +2,9 @@
 import json
 import os
 import datetime
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, session
+
+
 app = Flask(__name__)
 
 
@@ -10,13 +12,31 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'demandes'
 ALLOWED_EXTENSIONS = {'stl', 'obj'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # Création du dossier principal si inexistant
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+
+@app.route('/')
+def home():
+    return render_template('all/index.html')
+
+
+
+@app.route('/shop', methods=['GET'])
+def shop():
+    return render_template('all/shop.html')
+
+
+
+@app.route('/devis_formulaire', methods=['POST', 'GET'])
+def formulaire():
+    return render_template('all/form.html')
+
 
 @app.route('/form/send_devis_form', methods=['POST'])
 def enregistrer_demande():
@@ -34,7 +54,8 @@ def enregistrer_demande():
 
     # Traitement du fichier 3D
     fichier = request.files.get('fichier')
-    if not fichier or not allowed_file(fichier.filename):
+    filename = fichier.filename
+    if not fichier or (not '.' in filename or filename.rsplit('.', 1)[1].lower() not in ALLOWED_EXTENSIONS):
         return "Fichier non valide. Veuillez télécharger un fichier STL ou OBJ.", 400
     
     # Sécuriser le nom du fichier
@@ -60,7 +81,8 @@ def enregistrer_demande():
         "materiau": materiau,
         "quantite": quantite,
         "description": description,
-        "fichier": filename
+        "fichier": filename,
+        "status": "En attente"
     }
     
     chemin_json = os.path.join(dossier_demande, "demande.json")
@@ -70,17 +92,56 @@ def enregistrer_demande():
     return redirect("/")
 
 
-@app.route('/')
-def home():
-    return render_template('all/index.html')
 
-@app.route('/devis_formulaire', methods=['POST', 'GET'])
-def formulaire():
-    return render_template('all/form.html')
 
-@app.route('/shop', methods=['GET'])
-def shop():
-    return render_template('all/shop.html')
+
+
+
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('printer/login.html')
+
+
+
+@app.route('/check-login', methods=["POST"])
+def checkLogin():
+    # get the data
+    data = request.form
+    print(data)
+    username = data.get('username')
+    password = data.get('password')
+    # check if the email and password are correct
+    with open('config/printers.json', 'r') as f:
+        users = json.load(f)
+    for k, v in users.items():
+        if k == username and v == password:
+            session['username'] = username
+            return redirect("/printers")
+    return redirect("/login")
+
+
+
+def getDemandes(status = "En attente"):
+    # Lire les demandes
+    demandes = []
+    for dossier in os.listdir("demandes"):
+        chemin_json = os.path.join("demandes", dossier, "demande.json")
+        with open(chemin_json, 'r', encoding='utf-8') as f:
+            demande = json.load(f)
+            date = dossier.split('_')[-1]
+            demande['date'] = date[0:4] + '-' + date[4:6] + '-' + date[6:8] + ' ' + date[8:10] + ':' + date[10:12] + ':' + date[12:14]
+            if demande['status'] == status or status == 'all':
+                demande['dossier'] = dossier
+                demandes.append(demande)
+    return demandes
+
+
+
+@app.route('/printers', methods=['GET'])
+def printers():
+    return render_template('printer/dashboard.html', demandes = getDemandes(), travaux = getDemandes(session.get('username')), alldemandes = getDemandes('all'))
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='localhost', port=5000)

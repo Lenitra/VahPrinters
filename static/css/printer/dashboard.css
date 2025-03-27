@@ -1,0 +1,122 @@
+/* Généralités */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #444;
+}
+
+/* Section Statistiques */
+#statistiques {
+    padding: 40px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.statistiques {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.statistique {
+    flex: 1;
+    min-width: 200px;
+    background-color: #e8eff7;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.statistique h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.statistique p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e73be;
+}
+
+/* Section Demandes */
+#demandes {
+    padding: 40px 0;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.demande {
+    padding: 15px;
+    background-color: #fafafa;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.demande p {
+    margin: 5px 0;
+}
+
+.ask-date {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.ask-name, .ask-phone, .ask-mail, .ask-qte, .ask-mater {
+    font-weight: bold;
+}
+
+.ask-desc {
+    font-style: italic;
+    color: #555;
+}
+
+button {
+    background-color: #1e73be;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #165a90;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .statistiques {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .statistique {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
